@@ -134,13 +134,10 @@ function updateStock(stock) {
 }
 
 function managerShow() {
-    let stuff = manager
-   
-    console.log(manager)
     
-    manager.manager.viewProd()
+    mgr.manager.viewProd()
     
-    manager.manager.viewLow()
+    // mgr.manager.viewLow()
    
 }
 

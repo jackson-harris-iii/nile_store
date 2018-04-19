@@ -96,8 +96,8 @@ function shopping() {
         prompt(amountOptions).then( res => {
             let levels = checkStock(cart.stock_qty, res.amt)
             if (levels.result) {
-                console.log('good')
                 updateStock(levels)
+                homeScreen()
             }
             else {
                 console.log('Insufficient quantity!')
@@ -110,8 +110,6 @@ function shopping() {
 
 //checks to see if the stock qty of the request item is large enough to fill the order
 function checkStock(stock, qty) {
-    console.log(stock)
-    console.log(qty)
     let remaining = stock - qty
     if (remaining >= 0 ){
         let result =
@@ -142,6 +140,7 @@ function updateStock(stock) {
         let cost = stock.amt * cart.price
         let tx = "Thank you for your purchase. Your total amount charged is $" + cost + ".00"
         console.log(tx)
+        console.log('What would you like to do now?')
     })
     
 }

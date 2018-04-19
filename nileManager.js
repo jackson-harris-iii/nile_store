@@ -17,12 +17,37 @@ function viewProd() {
 }
 
 function viewLow() {
-    console.log('yep')
+    let sql = 'SELECT * FROM products'
+    connection.query(sql, (err, res) => {
+        res.forEach(element => {
+            let check = qtyCheck(element.stock_qty)
+            if (check){
+                console.log('Quantity')
+                console.log(element.product_name)
+            }
+        });
+    })
+}
+
+function qtyCheck(qty) {
+    if (qty < 20){
+        return true
+    }
+}
+
+function addInv() {
+    
+}
+
+function addProd() {
+    
 }
 
 const manager = {
     viewProd: viewProd,
     viewLow: viewLow,
+    addInv: addInv,
+    addProd: addProd
 }
 
 module.exports = { manager }

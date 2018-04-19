@@ -135,9 +135,9 @@ function updateStock(stock) {
 
 function managerShow() {
     
-    mgr.manager.viewProd()
+    // mgr.manager.viewProd()
     
-    // mgr.manager.viewLow()
+    mgr.manager.viewLow()
    
 }
 

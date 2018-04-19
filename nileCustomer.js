@@ -61,8 +61,9 @@ function homeScreen() {
 
 function shopping() {
     prompt(shoppingOptions).then( res => {
-        let id = res.choice
-        let sql = "SELECT * FROM products"
+        let id = res.id
+        console.log(id)
+        let sql = "SELECT * FROM products WHERE item_id = ?"
         connection.query(sql, id, (err, res) =>{
         
             console.log(res)

@@ -107,5 +107,12 @@ function checkStock(stock, qty) {
 }
 
 function updateStock(stock) {
-    console.log(stock)
+    console.log(stock.value)
+    console.log(cart.item_id)
+    let sql = "UPDATE products SET stock_qty = ? WHERE item_id = ?"
+    
+    connection.query(sql, [stock.value, cart.item_id], (err, res) => {
+        console.log(res.affectedRows + " record(s) updated")
+    })
+    
 }

@@ -93,6 +93,7 @@ function checkStock(stock, qty) {
         {
             result: true,
             value: remaining,
+            amt: qty
         }
         return result
     }
@@ -100,7 +101,6 @@ function checkStock(stock, qty) {
         let result =
             {
                 result: false,
-                value: remaining,
             }
         return result
     }
@@ -112,7 +112,11 @@ function updateStock(stock) {
     let sql = "UPDATE products SET stock_qty = ? WHERE item_id = ?"
     
     connection.query(sql, [stock.value, cart.item_id], (err, res) => {
-        console.log(res.affectedRows + " record(s) updated")
+        // console.log(res.affectedRows + " record(s) updated")
+        
+        let cost = stock.amt * cart.price
+        let tx = "Thank you for your purchase. Your total amount charged is $" + cost + ".00"
+        console.log(tx)
     })
     
 }

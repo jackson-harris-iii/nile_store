@@ -1,6 +1,8 @@
 const iq = require('inquirer')
 const mysql = require('mysql')
 
+var cart = null
+
 var connection = mysql.createConnection({
     host: '127.0.0.1',
     port: '8889',
@@ -65,9 +67,30 @@ function shopping() {
         console.log(id)
         let sql = "SELECT * FROM products WHERE item_id = ?"
         connection.query(sql, id, (err, res) =>{
-        
-            console.log(res)
+        cart = res[0]
+
+        prompt(amountOptions).then( res => {
+            let levels = checkStock(cart.stock_qty, res.amt)
+            if (levels) {
+                console.log('good')
+            }
+            else {
+                console.log('nope')
+            }
+        })
           
         }) 
     })
+}
+
+function checkStock(stock, qty) {
+    console.log(stock)
+    console.log(qty)
+    let remaining = stock - qty
+    if (remaining >= 0 ){
+        return true
+    }
+    else {
+        return false
+    }
 }

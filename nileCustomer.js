@@ -71,11 +71,12 @@ function shopping() {
 
         prompt(amountOptions).then( res => {
             let levels = checkStock(cart.stock_qty, res.amt)
-            if (levels) {
+            if (levels.result) {
                 console.log('good')
+                updateStock(levels)
             }
             else {
-                console.log('nope')
+                console.log('Insufficient quantity!')
             }
         })
           
@@ -88,9 +89,23 @@ function checkStock(stock, qty) {
     console.log(qty)
     let remaining = stock - qty
     if (remaining >= 0 ){
-        return true
+        let result =
+        {
+            result: true,
+            value: remaining,
+        }
+        return result
     }
     else {
-        return false
+        let result =
+            {
+                result: false,
+                value: remaining,
+            }
+        return result
     }
+}
+
+function updateStock(stock) {
+    console.log(stock)
 }

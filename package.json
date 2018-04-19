@@ -1,0 +1,23 @@
+{
+  "name": "nile_store",
+  "version": "1.0.0",
+  "description": "nile > amazon",
+  "main": "nileCustomer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jackson-harris-iii/nile_store.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jackson-harris-iii/nile_store/issues"
+  },
+  "homepage": "https://github.com/jackson-harris-iii/nile_store#readme",
+  "dependencies": {
+    "inquirer": "^5.2.0",
+    "mysql": "^2.15.0"
+  }
+}

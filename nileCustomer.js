@@ -50,7 +50,9 @@ var amountOptions = [
 
 var adminOptions = [
     {
-        type: 'list'
+        type: 'input',
+        name: 'password',
+        message: 'please enter your password'
     }
 ]
 
@@ -62,8 +64,7 @@ function homeScreen() {
             shopping()
         }
         else {
-            console.log('no')
-
+            adminLogin()
         }
     })
 }
@@ -141,4 +142,27 @@ function managerShow() {
    
 }
 
-managerShow()
+function adminLogin() {
+    prompt(adminOptions).then( res =>{
+        switch (res.password) {
+            case 'manager':
+                managerOptions()
+                break;
+            case 'supervisor':
+                supervisorOptions()
+                break;
+            default:
+            console.log('incorrect password')
+            homeScreen()
+                break;
+        }
+    })
+}
+function managerOptions() {
+    console.log('welcome manager')
+}
+
+function supervisorOptions() {
+    console.log('welcome supervisor')
+}
+// managerShow()

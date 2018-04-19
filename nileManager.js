@@ -19,16 +19,16 @@ function viewProd() {
 function viewLow() {
     let sql = 'SELECT * FROM products'
     connection.query(sql, (err, res) => {
+        console.log('Low Quantity Products:')
         res.forEach(element => {
             let check = qtyCheck(element.stock_qty)
             if (check){
-                console.log('Quantity')
                 console.log(element.product_name)
             }
         });
     })
 }
-
+//function to check it the stock of an item is below a certain amount
 function qtyCheck(qty) {
     if (qty < 20){
         return true

@@ -3,12 +3,12 @@ CREATE DATABASE nile_db;
 
 USE nile_db;
 
-CREATE TABLE products(
+CREATE TABLE products (
     item_id INTEGER(25) NOT NULL AUTO_INCREMENT,
     product_name VARCHAR(15),
     department_name VARCHAR(15),
     price float(15),
-    stock_qty(10),
+    stock_qty INTEGER(10),
     PRIMARY KEY(item_id)
 );
 

@@ -26,7 +26,7 @@ connection.connect(function (err) {
 var homeOptions = [
     {
         type: 'list',
-        choices: ['Shopping','Admin'],
+        choices: ['Shopping','Admin', 'exit'],
         name: 'choice',
         message: 'Welcome to The Nile Store.'
     }
@@ -56,6 +56,15 @@ var adminOptions = [
     }
 ]
 
+var managerOptions = [
+    {
+        type: 'list',
+        choices: ['View Products for Sale', 'View Low Inventory', 'Add to Inventory', 'Add New Product', 'exit'],
+        name: 'choice',
+        message: 'What would you like to do?'
+    }
+]
+
 //prompts the user with the homescreen options of their choice
 function homeScreen() {
     prompt(homeOptions).then( res => {
@@ -63,8 +72,11 @@ function homeScreen() {
             console.log('yes')
             shopping()
         }
-        else {
+        else if (res.choice == 'admin') {
             adminLogin()
+        }
+        else {
+            process.exit()
         }
     })
 }
@@ -146,10 +158,10 @@ function adminLogin() {
     prompt(adminOptions).then( res =>{
         switch (res.password) {
             case 'manager':
-                managerOptions()
+                managerPanel()
                 break;
             case 'supervisor':
-                supervisorOptions()
+                supervisorPanel()
                 break;
             default:
             console.log('incorrect password')
@@ -158,11 +170,36 @@ function adminLogin() {
         }
     })
 }
-function managerOptions() {
+function managerPanel() {
     console.log('welcome manager')
+    prompt(managerOptions).then( res => {
+        switch(res.choice){
+            case 'View Products for Sale':
+                mgr.manager.viewProd()
+                managerPanel()
+                break;
+            case 'View Low Inventory':
+                mgr.manager.viewLow()
+                managerPanel()
+                break;
+            case 'Add to Inventory':
+                mgr.manager.addInv()
+                managerPanel()
+                break;
+            case 'Add New Product':
+                mgr.manager.addProd()
+                managerPanel()
+                break;
+            default:
+            console.log('Manager Logged Out.')
+             homeScreen()
+             break;        
+
+        }
+    })
 }
 
-function supervisorOptions() {
+function supervisorPanel() {
     console.log('welcome supervisor')
 }
 // managerShow()

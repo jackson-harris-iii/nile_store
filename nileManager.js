@@ -9,6 +9,13 @@ var connection = mysql.createConnection({
     multipleStatements: true
 })
 
+function Item(product_name, department_name, price, stock_qty) {
+    this.product_name = product_name
+    this.department_name = department_name
+    this.price = price
+    this.stock_qty = stock_qty
+}
+
 function viewProd() {
     let sql = 'SELECT * FROM products'
     connection.query(sql, (err,res) => {
@@ -35,8 +42,18 @@ function qtyCheck(qty) {
     }
 }
 
-function addInv() {
-    
+function addInv(itemData) {
+    let newItem = new Item(
+        itemData.product_name,
+        itemData.department_name,
+        itemData.price,
+        itemData.stock_qty   
+    )
+    console.log(newItem)
+    // let sql = 'INSERT INTO products (product_name, department_name, price, stock_qty) VALUES ?'
+    // connection.query(sql, [newItem], (err, res) => {
+    //     console.log(res)
+    // } )
 }
 
 function addProd() {

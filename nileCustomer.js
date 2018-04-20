@@ -65,6 +65,7 @@ var managerOptions = [
     }
 ]
 
+
 //prompts the user with the homescreen options of their choice
 function homeScreen() {
     prompt(homeOptions).then( res => {
@@ -72,7 +73,7 @@ function homeScreen() {
             console.log('yes')
             shopping()
         }
-        else if (res.choice == 'admin') {
+        else if (res.choice == 'Admin') {
             adminLogin()
         }
         else {
@@ -182,20 +183,46 @@ function managerPanel() {
                 managerPanel()
                 break;
             case 'Add to Inventory':
-                mgr.manager.addInv()
+                mgr.manager.addProd()
                 managerPanel()
                 break;
             case 'Add New Product':
-                mgr.manager.addProd()
-                managerPanel()
+                addItem()
                 break;
             default:
             console.log('Manager Logged Out.')
              homeScreen()
              break;        
-
         }
     })
+}
+
+function addItem() {
+    let newItem = []
+    prompt([
+            {
+                type: 'input',
+                name: 'product_name',
+                message: 'What is the Product Name' 
+            },
+            {
+                type: 'input',
+                name: 'department_name',
+                message: 'What is the Department Name'
+            },
+            {
+                type: 'input',
+                name: 'price',
+                message: 'Price of the product?'
+            },
+            {
+                type: 'input',
+                name: 'stock_qty',
+                message: 'How many of this item do we have in stock?'
+            }
+        ]).then(answers => {
+        mgr.manager.addInv(answers)
+    });
 }
 
 function supervisorPanel() {

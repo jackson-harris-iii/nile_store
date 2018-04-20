@@ -12,8 +12,8 @@ var connection = mysql.createConnection({
 function Item(product_name, department_name, price, stock_qty) {
     this.product_name = product_name
     this.department_name = department_name
-    this.price = price
-    this.stock_qty = stock_qty
+    this.price = parseInt(price).toFixed(2)
+    this.stock_qty = parseInt(stock_qty).toFixed(2)
 }
 
 function viewProd() {
@@ -49,11 +49,14 @@ function addInv(itemData) {
         itemData.price,
         itemData.stock_qty   
     )
-    console.log(newItem)
-    // let sql = 'INSERT INTO products (product_name, department_name, price, stock_qty) VALUES ?'
-    // connection.query(sql, [newItem], (err, res) => {
-    //     console.log(res)
-    // } )
+    let details = Object.values(newItem)
+    console.log(details)
+    let sql = 'INSERT INTO products (product_name, department_name, price, stock_qty) VALUES (?, ?, ? ,?)'
+    
+    connection.query(sql, details, (err, res, field) => {
+        console.log(err)
+        console.log(field)
+    } )
 }
 
 function addProd() {

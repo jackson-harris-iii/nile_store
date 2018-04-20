@@ -7,7 +7,7 @@ CREATE TABLE products (
     item_id INTEGER(25) NOT NULL AUTO_INCREMENT,
     product_name VARCHAR(15),
     department_name VARCHAR(15),
-    price float(15),
+    price decimal(15, 2),
     stock_qty INTEGER(10),
     PRIMARY KEY(item_id)
 );

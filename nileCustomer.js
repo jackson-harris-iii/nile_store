@@ -139,7 +139,7 @@ function updateStock(stock) {
         // console.log(res.affectedRows + " record(s) updated")
         
         let cost = stock.amt * cart.price
-        let tx = "Thank you for your purchase. Your total amount charged is $" + cost + ".00"
+        let tx = "Thank you for your purchase. Your total amount charged is $" + cost
         console.log(tx)
         console.log('What would you like to do now?')
     })
